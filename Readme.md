@@ -4,6 +4,6 @@
 
 [Pumpkin sprite](http://www.piskelapp.com/p/agxzfnBpc2tlbC1hcHByEwsSBlBpc2tlbBiAgICB5vDWCAw/view) drawn using http://www.piskelapp.com/. Inspiration from this [tutorial](https://www.youtube.com/watch?v=QVahJxsg0TY).
 
-Animated using [Elm](http://elm-lang.org/) by changing the position of background image when the spacebar is pressed.
+Animated using [Elm](http://elm-lang.org/) by changing the position of background image when spacebar is pressed.
 
 See live demo. http://pumpkin.neillyons.io
