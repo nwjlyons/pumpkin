@@ -1,7 +1,7 @@
 module Main exposing (..)
 
-import Html exposing (text, div)
-import Html.Attributes exposing (style)
+import Html exposing (text, div, a)
+import Html.Attributes exposing (style, href)
 import Html.App exposing (program)
 import Keyboard
 
@@ -29,9 +29,10 @@ model =
 
 
 view model =
-    div []
-        [ div [ style [ ( "height", "192px" ), ( "width", "192px" ), ( "background", "url(/pumpkin.png)  " ++ toString model ++ "px 0" ) ] ] []
+    div [style [("text-align", "center")]]
+        [ div [ style [ ("display", "inline-block"), ( "height", "192px" ), ( "width", "192px" ), ( "background", "url(/pumpkin.png)  " ++ toString model ++ "px 0" ) ] ] []
         , div [] [ text "Press spacebar a few times" ]
+        , div [] [ a [href "https://github.com/nwjlyons/pumpkin"] [text "github"]  ]
         ]
 
 
