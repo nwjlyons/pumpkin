@@ -16,33 +16,48 @@ main =
 
 
 init =
-    ( 0, Cmd.none )
+    ( Down, Cmd.none )
 
 
-type Msg
+type Pos
     = Up
     | Down
 
 
-model =
-    0
+type Msg
+    = Toggle
+    | NoOp
 
 
 view model =
-    div [style [("text-align", "center")]]
-        [ div [ style [ ("display", "inline-block"), ( "height", "192px" ), ( "width", "192px" ), ( "background", "url(/pumpkin.png)  " ++ toString model ++ "px 0" ) ] ] []
-        , div [] [ text "Press spacebar a few times" ]
-        , div [] [ a [href "https://github.com/nwjlyons/pumpkin"] [text "github"]  ]
-        ]
+    let
+        xPos =
+            case model of
+                Up ->
+                    192
+
+                Down ->
+                    0
+    in
+        div [ style [ ( "text-align", "center" ) ] ]
+            [ div [ style [ ( "display", "inline-block" ), ( "height", "192px" ), ( "width", "192px" ), ( "background", "url(/pumpkin.png)  " ++ toString xPos ++ "px 0" ) ] ] []
+            , div [] [ text "Press spacebar a few times" ]
+            , div [] [ a [ href "https://github.com/nwjlyons/pumpkin" ] [ text "github" ] ]
+            ]
 
 
 update msg model =
     case msg of
-        Up ->
-            ( 192, Cmd.none )
+        Toggle ->
+            case model of
+                Up ->
+                    ( Down, Cmd.none )
 
-        Down ->
-            ( 0, Cmd.none )
+                Down ->
+                    ( Up, Cmd.none )
+
+        NoOp ->
+            ( model, Cmd.none )
 
 
 subscriptions model =
@@ -52,10 +67,7 @@ subscriptions model =
 onKeyDown model key =
     case key of
         32 ->
-            if model == 0 then
-                Up
-            else
-                Down
+            Toggle
 
         _ ->
-            Down
+            NoOp

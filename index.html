@@ -8562,16 +8562,15 @@ var _elm_lang$keyboard$Keyboard$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Keyboard'] = {pkg: 'elm-lang/keyboard', init: _elm_lang$keyboard$Keyboard$init, onEffects: _elm_lang$keyboard$Keyboard$onEffects, onSelfMsg: _elm_lang$keyboard$Keyboard$onSelfMsg, tag: 'sub', subMap: _elm_lang$keyboard$Keyboard$subMap};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'Up') {
-			return {ctor: '_Tuple2', _0: 192, _1: _elm_lang$core$Platform_Cmd$none};
-		} else {
-			return {ctor: '_Tuple2', _0: 0, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
 var _user$project$Main$view = function (model) {
+	var xPos = function () {
+		var _p0 = model;
+		if (_p0.ctor === 'Up') {
+			return 192;
+		} else {
+			return 0;
+		}
+	}();
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -8602,7 +8601,7 @@ var _user$project$Main$view = function (model) {
 									'url(/pumpkin.png)  ',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_elm_lang$core$Basics$toString(model),
+										_elm_lang$core$Basics$toString(xPos),
 										'px 0'))
 							}
 							]))
@@ -8636,17 +8635,32 @@ var _user$project$Main$view = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$model = 0;
-var _user$project$Main$init = {ctor: '_Tuple2', _0: 0, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$Down = {ctor: 'Down'};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$Down, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$Up = {ctor: 'Up'};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		if (_p1.ctor === 'Toggle') {
+			var _p2 = model;
+			if (_p2.ctor === 'Up') {
+				return {ctor: '_Tuple2', _0: _user$project$Main$Down, _1: _elm_lang$core$Platform_Cmd$none};
+			} else {
+				return {ctor: '_Tuple2', _0: _user$project$Main$Up, _1: _elm_lang$core$Platform_Cmd$none};
+			}
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _user$project$Main$NoOp = {ctor: 'NoOp'};
+var _user$project$Main$Toggle = {ctor: 'Toggle'};
 var _user$project$Main$onKeyDown = F2(
 	function (model, key) {
-		var _p1 = key;
-		if (_p1 === 32) {
-			return _elm_lang$core$Native_Utils.eq(model, 0) ? _user$project$Main$Up : _user$project$Main$Down;
+		var _p3 = key;
+		if (_p3 === 32) {
+			return _user$project$Main$Toggle;
 		} else {
-			return _user$project$Main$Down;
+			return _user$project$Main$NoOp;
 		}
 	});
 var _user$project$Main$subscriptions = function (model) {
