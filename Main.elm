@@ -40,7 +40,15 @@ view model =
                     0
     in
         div [ style [ ( "text-align", "center" ) ] ]
-            [ div [ style [ ( "display", "inline-block" ), ( "height", "192px" ), ( "width", "192px" ), ( "background", "url(/pumpkin.png)  " ++ toString xPos ++ "px 0" ) ] ] []
+            [ div
+                [ style
+                    [ ( "display", "inline-block" )
+                    , ( "height", "192px" )
+                    , ( "width", "192px" )
+                    , ( "background", "url(/pumpkin.png)  " ++ toString xPos ++ "px 0" )
+                    ]
+                ]
+                []
             , div [] [ text "Press spacebar a few times" ]
             , div [] [ a [ href "https://github.com/nwjlyons/pumpkin" ] [ text "github" ] ]
             ]
